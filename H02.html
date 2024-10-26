@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+    <style>
+        .hightlight{color: #900; background-color: #9C0;}
+        .hang{cursor: pointer;}
+    </style>
+    <script>
+        $(document).ready(function(){
+            $('.hang').mouseover(function(){
+                $(this).addClass('hightlight');
+            });
+
+            $('.hang').mouseout(function(){
+                $(this).removeClass('hightlight');
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#chonhet').click(function(){
+                var status=this.checked;
+                $('input[name=chon]').each(function(){
+                    this.checked=status;
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#chonhet').click(function(){
+                var status=this.checked;
+                $('input[name=chon]').each(function(){
+                    this.checked=status;
+                });
+            });
+            $('#chinhhet').click(function(){
+                var listid="";
+                $('input[name=chon]').each(function(){
+                    if(this.checked)
+                    listid=listid+','+this.value;
+                });
+                window.location="chinh.php?listid="+listid;
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#chonhet').click(function(){
+                var status=this.checked;
+                $('input[name=chon]').each(function(){
+                    this.checked=status;
+                });
+            });
+            $('#xoahet').click(function(){
+                var listid="";
+                $('input[name=chon]').each(function(){
+                    if(this.checked==true)
+                {
+                    listid=listid+","+this.value
+                }
+                });
+                listid=listid.substr(1);
+                window.location="xoa.php?listid="+listid;
+            });
+        });    
+    </script>
+</head>
+<body>
+    <form id="form1" name="form1" method="post" action="loaitin_them.php">
+        <table id="dstin" align="center" border="1" cellpadding="4" cellspacing="0" width="600">
+            <tr>
+                <td colspan="5" align="left">
+                    <input name="xoahet" id="xoahet" value="xóa" type="button">
+                <input name="chinhhet" id="chinhhet" value="chỉnh" type="button">
+                </td>
+                <td align="right"><a href="loaitin_them.php">Thêm loại tin</a></td>
+                <td align="right">
+                    <select name="cbothemnhieu" id="cbothemnhieu">
+                        <option value="1">1</option>
+                        <option selected="selected" value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input name="btnthemnhieu" id="btnthemnhieu" value="thêm" type="button">
+                </td>
+            </tr>
+            <tr class="hang">
+                <th align="left"><input id="chonhet" type="checkbox"></th>
+                <th>idLT</th>
+                <th>Tên loại tin</th>
+                <th>Ẩn hiện</th>
+                <th>Thứ tự</th>
+                <th>Thể loại</th>
+                <th>Action</th>
+            </tr>
+
+            <tr class="hang">
+                <td><input id="chon" name="chon" itemid="chon" value="3" class="chon" type="checkbox"></td>
+                <td>3</td>
+                <td>Du lịch</td>
+                <td width="100">Đang hiện</td>
+                <td>2</td>
+                <td><a href="theloai_xemds.php">Tin xã hội</a></td>
+                <td align="center" wdth="100">
+                |    <a href="loaitin_chinh.php?idLT=3">Chỉnh</a> 
+                |    <a href="loaitin_xoa.php?idLT=3" onclick="return confirm('Xóa hả')">Xóa</a> |
+                </td>
+
+                <tr class="hang">
+                    <td><input id="chon" name="chon" itemid="chon" value="9" class="chon" type="checkbox"></td>
+                    <td>9</td>
+                    <td>Xã hội</td>
+                    <td width="100">Đang hiện</td>
+                    <td>3</td>
+                    <td><a href="theloai_xemds.php">Tin xã hội</a></td>
+                    <td align="center" wdth="100">
+                    |    <a href="loaitin_chinh.php?idLT=3">Chỉnh</a> 
+                    |    <a href="loaitin_xoa.php?idLT=3" onclick="return confirm('Xóa hả')">Xóa</a> |
+                    </td>
+                </tr>
+                
+        </table>
+    </form>
+</body>
+</html>
